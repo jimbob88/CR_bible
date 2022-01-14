@@ -5,11 +5,17 @@ import re
 import json
 import argparse
 
+parser = argparse.ArgumentParser(description = "A software for getting verse positions by paragraph")
+parser.add_argument('--folder', '-f', required=True, help="choose the folder with the bible dataset")
+parser.add_argument('--xmlname', '-x', required=True, help="select the name of the xml file (don't pass a path)")
+args = parser.parse_args()
 
-bible_html = "./engwebpb_html/"  # CHANGE THIS TO CHANGE YOUR HTML BIBLE
+
+
+bible_html = args.folder  # CHANGE THIS TO CHANGE YOUR HTML BIBLE
 
 tree = ET.parse(
-    os.path.join(bible_html, "engwebpb-VernacularParms.xml")
+    os.path.join(bible_html, args.xmlname)
 )  # CHANGE TO THE NAME OF YOUR BIBLE
 root = tree.getroot()
 
