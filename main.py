@@ -1,13 +1,16 @@
-from turtle import ht
 import xml.etree.ElementTree as ET
 import os
 import bs4
 import re
 import json
+import argparse
+
 
 bible_html = "./engwebpb_html/"  # CHANGE THIS TO CHANGE YOUR HTML BIBLE
 
-tree = ET.parse(os.path.join(bible_html, "engwebpb-VernacularParms.xml"))
+tree = ET.parse(
+    os.path.join(bible_html, "engwebpb-VernacularParms.xml")
+)  # CHANGE TO THE NAME OF YOUR BIBLE
 root = tree.getroot()
 
 conversion_table = {
