@@ -48,3 +48,31 @@ For example, on the [World English Bible British Edition](https://ebible.org/fin
 ## Other Information
 
 This software has _ONLY_ been tested on the "World English Bible British Edition" because that is the bible I was analysing this text!
+
+## How-to
+
+1. Choose a copy of the bible from [ebible.org's download page](https://ebible.org/download.php). I personally chose [WEBPB](https://ebible.org/details.php?id=engwebpb).
+2. Download the "Zipped mobile HTML" file. For WEBPB this was: `engwebpb_html.zip`.
+3. Note down from this website the `ID` of your bible:
+   ![ID](https://i.imgur.com/yrOvIf4.png)
+4. Unzip this folder into a folder with the same name, i.e: `.\engwebpb_html`
+5. Download a copy of CR_bible and extract it to your downloads folder. This created a folder called `CR_bible-master` for me.
+6. Copy this folder to the same directory as CR_bible (the `CR_bible-master` folder)
+7. Open a powershell in this folder (Shift+Right-Click `Open PowerShell window here`)
+8. Execute the following command:
+
+```
+> python .\main.py -f .\<folder including bible>\ -x <bible ID>-VernacularParms.xml
+```
+
+For the WEBP:
+
+```
+> python .\main.py -f .\engwebpb_html\ -x engwebpb-VernacularParms.xml
+```
+
+9. Now you have this JSON, you can use this in your own projects, or you can move the `dataset.json` file into the same folder as [bible-maker](https://github.com/jimbob88/bible-maker) and execute the following command:
+
+```
+> python .\main.py -p .\dataset.json -o .\<bible>.txt
+```
