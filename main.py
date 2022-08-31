@@ -92,12 +92,9 @@ def paragraph_carriage_returns(soup: bs4.BeautifulSoup):
     return remove_empty(paragraph_verses)
 
 
-def main():
-    args = get_args()
-    folder = Path(args.folder)
-
-    conversion_table = abbreviations(folder / args.xmlname)
-    filename_regex = htm_filename_regex(list(conversion_table.keys()), args.ignore)
+def carriage_returns(folder: Path, xmlname: str, ignore: List[str]):
+    conversion_table = abbreviations(folder / xmlname)
+    filename_regex = htm_filename_regex(list(conversion_table.keys()), ignore)
 
     dataset = defaultdict(dict)
     for file in filter_folder(folder, filename_regex):
@@ -109,6 +106,15 @@ def main():
         p_verses = paragraph_carriage_returns(soup)
         if p_verses:
             dataset[book_name][chapter] = p_verses
+
+    return dataset
+
+
+def main():
+    args = get_args()
+    folder = Path(args.folder)
+
+    dataset = carriage_returns(folder, args.xmlname, args.ignore)
 
     print(dataset)
 
